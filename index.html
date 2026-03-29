@@ -139,6 +139,39 @@
 
   footer{background:var(--ink);color:rgba(245,240,232,.5);text-align:center;padding:28px;font-size:12px;letter-spacing:.5px;margin-top:80px;}
   footer strong{color:var(--gold);}
+
+  /* WEATHER OVERVIEW */
+  .weather-bar{background:white;border-radius:12px;padding:24px 28px;margin:32px 0 0;box-shadow:0 2px 16px rgba(0,0,0,.06);border-left:4px solid #2c5f8a;}
+  .weather-bar h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:16px;color:var(--ink);}
+  .wgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  @media(max-width:700px){.wgrid{grid-template-columns:repeat(2,1fr);}}
+  .wday{border-radius:10px;padding:14px;text-align:center;}
+  .wday.good{background:#eafaf1;border:1px solid #a9dfbf;}
+  .wday.mixed{background:#fef9e7;border:1px solid #f9e79f;}
+  .wday.bad{background:#fdf2f2;border:1px solid #f1aeb5;}
+  .wday .wd-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;}
+  .wday .wd-date{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+  .wday .wd-icon{font-size:1.8rem;margin-bottom:4px;}
+  .wday .wd-desc{font-size:12px;color:var(--ink);font-weight:600;margin-bottom:3px;}
+  .wday .wd-rain{font-size:11px;color:var(--muted);}
+  .wday .wd-verdict{font-size:11px;font-weight:700;margin-top:6px;padding:3px 8px;border-radius:12px;display:inline-block;}
+  .verdict-good{background:#2d6a4f;color:white;}
+  .verdict-mixed{background:#d4a017;color:white;}
+  .verdict-bad{background:#c0392b;color:white;}
+  .weather-note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;padding-top:12px;border-top:1px solid var(--soft);}
+  .weather-note strong{color:var(--ink);}
+
+  /* WEATHER TAG on stations */
+  .wtag{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;margin-left:4px;vertical-align:middle;}
+  .wt-out{background:#fff3cd;color:#856404;}  /* outdoor/view — weather dependent */
+  .wt-in{background:#d1ecf1;color:#0c5460;}   /* indoor — always ok */
+  .wt-ok{background:#d4edda;color:#155724;}   /* covered outdoor — ok in rain */
+
+  /* DAY WEATHER BADGE in header */
+  .day-weather{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;margin-top:8px;}
+  .day-weather.dw-good{background:#eafaf1;color:#1e8449;border-color:#a9dfbf;}
+  .day-weather.dw-mixed{background:#fef9e7;color:#9a7d0a;border-color:#f9e79f;}
+  .day-weather.dw-bad{background:#fdf2f2;color:#922b21;border-color:#f1aeb5;}
 </style>
 </head>
 <body>
@@ -166,6 +199,50 @@
 
 <main>
 
+<!-- WETTERÜBERSICHT -->
+<div class="weather-bar">
+  <h3>🌤️ Wetterprognose London — 1.–4. April 2026</h3>
+  <div class="wgrid">
+    <div class="wday mixed">
+      <div class="wd-label">Mittwoch</div>
+      <div class="wd-date">1. April</div>
+      <div class="wd-icon">🌦️</div>
+      <div class="wd-desc">Teils bewölkt, Schauer möglich</div>
+      <div class="wd-rain">🌧️ 40% Regenrisiko · 14°C</div>
+      <span class="wd-verdict verdict-mixed">⚠️ Wechselhaft</span>
+    </div>
+    <div class="wday bad">
+      <div class="wd-label">Donnerstag</div>
+      <div class="wd-date">2. April</div>
+      <div class="wd-icon">🌧️</div>
+      <div class="wd-desc">Bewölkt, Schauer wahrscheinlich</div>
+      <div class="wd-rain">🌧️ 60% Regenrisiko · 13°C</div>
+      <span class="wd-verdict verdict-bad">❌ Schlechtester Tag</span>
+    </div>
+    <div class="wday bad">
+      <div class="wd-label">Freitag</div>
+      <div class="wd-date">3. April</div>
+      <div class="wd-icon">🌧️</div>
+      <div class="wd-desc">Bewölkt, Schauer wahrscheinlich</div>
+      <div class="wd-rain">🌧️ 60% Regenrisiko · 12°C</div>
+      <span class="wd-verdict verdict-bad">❌ Schlechter Tag</span>
+    </div>
+    <div class="wday good">
+      <div class="wd-label">Samstag</div>
+      <div class="wd-date">4. April</div>
+      <div class="wd-icon">🌤️</div>
+      <div class="wd-desc">Hochdruckeinfluss, überwiegend trocken</div>
+      <div class="wd-rain">☀️ 20% Regenrisiko · 13°C</div>
+      <span class="wd-verdict verdict-good">✅ Bester Tag</span>
+    </div>
+  </div>
+  <div class="weather-note">
+    <strong>Planungslogik:</strong> Alle Panorama-Attraktionen (London Eye, Greenwich Observatory, Garden at 120, Greenwich Park, Cable Car) wurden auf <strong>Samstag</strong> (bester Tag) oder den Abend konzentriert. Museen, Kirchen und überdachte Märkte sind auf <strong>Donnerstag &amp; Freitag</strong> gelegt. Badges zeigen: <span class="wtag wt-out">☀️ wetterabhängig</span> Aussicht/Außen braucht gutes Wetter · <span class="wtag wt-ok">🌂 regengeeignet</span> überdacht/drinnen · <span class="wtag wt-in">🏛️ indoor</span> immer optimal.
+    <br><br>
+    <strong>Quelle:</strong> Meteored / Met Office, Stand 29. März 2026. Prognosen für 4+ Tage können sich noch ändern — bitte kurz vor Abreise erneut prüfen.
+  </div>
+</div>
+
 <!-- TAG 1 -->
 <section class="day-section" id="t1">
   <div class="day-hdr">
@@ -179,12 +256,13 @@
           <span class="rt rt-t">🚇 Waterloo → Angel</span>
           <span class="rt rt-i">🌅 Sonnenuntergang 19:33 Uhr</span>
         </div>
+        <div class="day-weather dw-mixed">🌦️ Wechselhaft · 40% Regen · 14°C — Panorama-Attraktionen könnten eingeschränkt sein</div>
       </div>
     </div>
-    <a class="gbtn" href="https://www.google.com/maps/dir/Westminster+Abbey,+London/Buckingham+Palace+Royal+Mews,+London/Covent+Garden,+London/Seven+Dials,+London/Chinatown,+Gerrard+Street,+London/London+Eye,+London/Southbank+Skate+Space,+London/@51.5,-0.12,14z/" target="_blank">📍 Route in Google Maps</a>
+    <a class="gbtn" href="https://www.google.com/maps/dir/Westminster+Abbey,+London/Buckingham+Palace+Royal+Mews,+London/Battersea+Power+Station+Chimney+Lift,+London/Covent+Garden,+London/Chinatown,+Gerrard+Street,+London/London+Eye,+London/Southbank+Skate+Space,+London/@51.5,-0.12,13z/" target="_blank">📍 Route in Google Maps</a>
   </div>
   <div class="card">
-        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">7 Stops</span></div>
+        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">8 Stops</span></div>
         <table>
           <thead><tr><th>Station</th><th>Typ</th><th>Preis (2E+1K)</th><th>Besonderheit</th><th>Website</th></tr></thead>
           <tbody>
@@ -196,28 +274,35 @@
               <td><a class="wl" href="https://www.westminster-abbey.org/worship-music/services-and-times" target="_blank">🔗 Zeiten</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🐴</span><div>Royal Mews<div class="st">11:00 – 12:30</div></div></div></td>
+              <td><div class="sn"><span class="si">🐴</span><div>Royal Mews<div class="st">11:00 – 12:15</div></div></div></td>
               <td><span class="badge bp">Bezahlt</span></td>
               <td><span class="pr pp">£18+£18+£9 = <b>£45</b></span></td>
               <td class="nc">Gold State Coach, Königspferde. <strong>Vorab buchen!</strong> Do–Mo geöffnet.</td>
               <td><a class="wl" href="https://www.rct.uk/visit/the-royal-mews-buckingham-palace" target="_blank">🔗 rct.uk</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🎭</span><div>Covent Garden<div class="st">13:00 – 14:30</div></div></div></td>
+              <td><div class="sn"><span class="si">🏭</span><div>Chimney Lift — Battersea<div class="st">12:45 – 14:00</div></div></div></td>
+              <td><span class="badge bp">Bezahlt</span></td>
+              <td><span class="pr pp">ab £21+£21+£16 = <b>~£58</b></span></td>
+              <td class="nc">Glaslift 109m im Battersea Power Station Schornstein. 360°-Skyline. Art Déco Turbine Hall. <strong>Online vorab = günstiger!</strong> <span class="wtag wt-out">☀️ Aussicht wetterabhängig</span></td>
+              <td><a class="wl" href="https://thechimneylift.co.uk/tickets/" target="_blank">🔗 thechimneylift.co.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🎭</span><div>Covent Garden<div class="st">15:00 – 16:30</div></div></div></td>
               <td><span class="badge bf">Kostenlos</span></td>
               <td><span class="pr pf">Gratis</span></td>
               <td class="nc">Straßenkünstler, Markthalle, Shops. Mittagessen hier.</td>
               <td><a class="wl" href="https://www.coventgarden.london" target="_blank">🔗 Website</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🔵</span><div>Seven Dials<div class="st">14:30 – 15:15</div></div></div></td>
+              <td><div class="sn"><span class="si">🔵</span><div>Seven Dials<div class="st">16:30 – 17:15</div></div></div></td>
               <td><span class="badge bf">Kostenlos</span></td>
               <td><span class="pr pf">Gratis</span></td>
               <td class="nc">7 Straßen, unabhängige Shops, cooler Vibe. 5 Min von Covent Garden.</td>
               <td><a class="wl" href="https://sevendials.london" target="_blank">🔗 Website</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🏮</span><div>Chinatown<div class="st">15:15 – 16:00</div></div></div></td>
+              <td><div class="sn"><span class="si">🏮</span><div>Chinatown<div class="st">17:15 – 18:00</div></div></div></td>
               <td><span class="badge bf">Kostenlos</span></td>
               <td><span class="pr pf">Gratis</span></td>
               <td class="nc">Gerrard Street, rote Lampions. Snack-Stop.</td>
@@ -227,7 +312,7 @@
               <td><div class="sn"><span class="si">🎡</span><div>London Eye<div class="st">18:15 – 19:15</div></div></div></td>
               <td><span class="badge bp">Bezahlt</span></td>
               <td><span class="pr pp" style="color:var(--red)">ab £29/Erw.<br><b>18:30 Uhr buchen!</b></span></td>
-              <td class="nc"><strong>Sonnenuntergang 19:33 — goldenes Licht!</strong> Frühlings-Edition bis Mai.</td>
+              <td class="nc"><strong>Sonnenuntergang 19:33 — goldenes Licht!</strong> Frühlings-Edition bis Mai. <span class="wtag wt-out">☀️ Aussicht wetterabhängig</span></td>
               <td><a class="wl" href="https://www.londoneye.com" target="_blank">🔗 londoneye.com</a></td>
             </tr>
             <tr>
@@ -247,9 +332,9 @@
             <div class="fc"><div class="mt mtd">🌙 Abendessen</div><div class="rn">Brasserie Blanc Southbank</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.4</span><span class="rcnt">(1.784)</span></div><div class="desc">Französische Brasserie, 2 Min vom London Eye. Perfekt zum Abschluss.</div><div class="addr">📍 9 Belvedere Rd, SE1 8YL</div></div>
           </div>
         </div>
-        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£45 Royal Mews + London Eye-Tickets</span></div>
+        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£103 Royal Mews + Chimney Lift + London Eye-Tickets</span></div>
       </div>
-  <div class="tip">⚡ <strong>Sofort buchen:</strong> London Eye 18:30 Uhr → <a href="https://www.londoneye.com" target="_blank">londoneye.com</a> &nbsp;·&nbsp; Royal Mews → <a href="https://www.rct.uk/visit/the-royal-mews-buckingham-palace" target="_blank">rct.uk</a></div>
+  <div class="tip">⚡ <strong>Sofort buchen:</strong> London Eye 18:30 Uhr → <a href="https://www.londoneye.com" target="_blank">londoneye.com</a> &nbsp;·&nbsp; Royal Mews → <a href="https://www.rct.uk/visit/the-royal-mews-buckingham-palace" target="_blank">rct.uk</a> &nbsp;·&nbsp; Chimney Lift → <a href="https://thechimneylift.co.uk/tickets/" target="_blank">thechimneylift.co.uk</a> (online günstiger!)</div>
 </section>
 
 <hr class="day-div">
@@ -266,12 +351,13 @@
           <span class="rt rt-w">🚶 Zu Fuß westlich entlang Themse</span>
           <span class="rt rt-t">🚇 Bank → Angel</span>
         </div>
+        <div class="day-weather dw-bad">🌧️ Schlechtester Tag · 60% Regen · 13°C — Ideal: Museen, überdachte Märkte, Innenattraktionen</div>
       </div>
     </div>
-    <a class="gbtn" href="https://www.google.com/maps/dir/Tower+of+London,+London/Tower+Bridge,+London/Borough+Market,+London/The+Shard,+London/120+Fenchurch+Street,+London/@51.506,-0.083,14z/" target="_blank">📍 Route in Google Maps</a>
+    <a class="gbtn" href="https://www.google.com/maps/dir/Tower+of+London,+London/Tower+Bridge,+London/Monument+to+the+Great+Fire+of+London/Borough+Market,+London/The+Shard,+London/120+Fenchurch+Street,+London/@51.506,-0.083,14z/" target="_blank">📍 Route in Google Maps</a>
   </div>
   <div class="card">
-        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">5 Stops</span></div>
+        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">6 Stops</span></div>
         <table>
           <thead><tr><th>Station</th><th>Typ</th><th>Preis (2E+1K)</th><th>Besonderheit</th><th>Website</th></tr></thead>
           <tbody>
@@ -279,36 +365,43 @@
               <td><div class="sn"><span class="si">🏰</span><div>Tower of London<div class="st">09:00 – 11:30</div></div></div></td>
               <td><span class="badge bp">Bezahlt</span></td>
               <td><span class="pr pp">£34.80×2+£17.40<br>= <b>£87</b></span></td>
-              <td class="nc"><strong>Sofort buchen!</strong> Ostern = ausgebucht. Crown Jewels, Beefeaters.</td>
+              <td class="nc"><strong>Sofort buchen!</strong> Ostern = ausgebucht. Crown Jewels, Beefeaters. <span class="wtag wt-in">🏛️ Indoor</span></td>
               <td><a class="wl" href="https://www.hrp.org.uk/tower-of-london" target="_blank">🔗 hrp.org.uk</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🌉</span><div>Tower Bridge<div class="st">11:30 – 13:00</div></div></div></td>
+              <td><div class="sn"><span class="si">🌉</span><div>Tower Bridge<div class="st">11:30 – 12:30</div></div></div></td>
               <td><span class="badge bp">Bezahlt</span></td>
               <td><span class="pr pp">~£11+£11+£5 = <b>~£27</b></span></td>
-              <td class="nc">Glas-Gehweg 43m Höhe, Maschinenraum. 5 Min Fußweg.</td>
+              <td class="nc">Glas-Gehweg 43m Höhe, Maschinenraum. 5 Min Fußweg. <span class="wtag wt-ok">🌂 Teils überdacht</span></td>
               <td><a class="wl" href="https://www.towerbridge.org.uk" target="_blank">🔗 towerbridge.org.uk</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🥕</span><div>Borough Market<div class="st">13:00 – 14:00</div></div></div></td>
+              <td><div class="sn"><span class="si">🔥</span><div>The Monument<div class="st">12:30 – 13:15</div></div></div></td>
+              <td><span class="badge bp">Bezahlt</span></td>
+              <td><span class="pr pp">£6+£6+£3 = <b>£15</b></span></td>
+              <td class="nc">311 Stufen auf die Spitze — Panoramablick. Direkt neben Borough Market. Von Wren entworfen. <span class="wtag wt-out">☀️ Aussicht wetterabhängig</span></td>
+              <td><a class="wl" href="https://www.themonument.org.uk" target="_blank">🔗 themonument.org.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🥕</span><div>Borough Market<div class="st">13:15 – 14:15</div></div></div></td>
               <td><span class="badge bf">Kostenlos</span></td>
               <td><span class="pr pf">Gratis</span></td>
-              <td class="nc">Do 10–17. Weltklasse Streetfood. 10 Min Fußweg über London Bridge.</td>
+              <td class="nc">Do 10–17. Weltklasse Streetfood. 2 Min vom Monument. <span class="wtag wt-ok">🌂 Überdacht</span></td>
               <td><a class="wl" href="https://boroughmarket.org.uk" target="_blank">🔗 boroughmarket.org.uk</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🏙️</span><div>The Shard — Hutong Bar<div class="st">14:30 – 16:00</div></div></div></td>
+              <td><div class="sn"><span class="si">🏙️</span><div>The Shard — Hutong Bar<div class="st">14:45 – 16:15</div></div></div></td>
               <td><span class="badge bfood">Walk-in</span></td>
               <td><span class="pr pp">~£25/Cocktail</span></td>
-              <td class="nc">Level 33, Shanghai Bar. Panoramablick. <strong>Tea Time 14–15 Uhr am ruhigsten!</strong></td>
+              <td class="nc">Level 33, Shanghai Bar. Panoramablick. <strong>Tea Time 14–15 Uhr am ruhigsten!</strong> <span class="wtag wt-out">☀️ Aussicht wetterabhängig</span></td>
               <td><a class="wl" href="https://hutong.co.uk/bar/" target="_blank">🔗 hutong.co.uk</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🌿</span><div>Garden at 120<div class="st">16:30 – 17:30</div></div></div></td>
+              <td><div class="sn"><span class="si">🌿</span><div>Garden at 120 <em style="font-weight:400;font-size:11px;color:var(--muted)">— bei Regen: Wagtail Bar</em><div class="st">16:30 – 17:30</div></div></div></td>
               <td><span class="badge bf">Kostenlos</span></td>
               <td><span class="pr pf">Gratis</span></td>
-              <td class="nc">Kein Buchen! 360°-Blick, Gherkin auf Augenhöhe. Do bis 18:30 ✅</td>
-              <td><a class="wl" href="https://www.thegardenat120.com" target="_blank">🔗 Website</a></td>
+              <td class="nc">Bei gutem Wetter: 360°-Blick kostenlos. <strong>Bei Regen → Wagtail Rooftop Bar</strong> (68 King William St, 5 Min) — Do bis 01:00, Cocktails ~£15. <span class="wtag wt-out">☀️ Wetterabhängig</span></td>
+              <td><a class="wl" href="https://www.thegardenat120.com" target="_blank">🔗 Garden at 120</a> / <a class="wl" href="https://etmcollection.co.uk/venue/wagtail-rooftop-bar-restaurant/" target="_blank">🔗 Wagtail</a></td>
             </tr>
           </tbody>
         </table>
@@ -316,13 +409,13 @@
           <div class="ftitle">🍴 Restaurantempfehlungen — nur ≥ 4.4 Google-Sterne</div>
           <div class="fgrid">
             <div class="fc"><div class="mt mtb">☕ Frühstück</div><div class="rn">The Cardinal Bar &amp; Kitchen</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.8</span><span class="rcnt">(1.122)</span></div><div class="desc">Direkt am Tower, ab 7:00. Internationale Küche, hervorragend bewertet.</div><div class="addr">📍 9 Aldgate High St, EC3N 1AH</div></div>
-            <div class="fc"><div class="mt mtl">🍽️ Mittag</div><div class="rn">Borough Market</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.6</span><span class="rcnt">(124.781)</span></div><div class="desc">Einer der besten Märkte der Welt. Frisches Streetfood aus aller Welt. Do ab 10!</div><div class="addr">📍 Borough Market, SE1 9AH</div></div>
-            <div class="fc"><div class="mt mtd">🌙 Abendessen</div><div class="rn">Blacklock City</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.7</span><span class="rcnt">(3.444)</span></div><div class="desc">Legendäres Steakhaus in der City. Chops &amp; Cocktails. Do Abend bis 22:00.</div><div class="addr">📍 13 Philpot Ln, EC3M 8AA</div></div>
+            <div class="fc"><div class="mt mtl">🍽️ Mittag</div><div class="rn">Borough Market</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.6</span><span class="rcnt">(124.781)</span></div><div class="desc">Bester überdachter Markt Londons — ideal auch bei Regen! Do ab 10:00.</div><div class="addr">📍 Borough Market, SE1 9AH</div></div>
+            <div class="fc"><div class="mt mtd">🌙 Abendessen</div><div class="rn">Blacklock City</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.7</span><span class="rcnt">(3.444)</span></div><div class="desc">Legendäres Steakhaus in der City. Chops &amp; Cocktails. Do bis 22:00. Reservierung empfohlen!</div><div class="addr">📍 13 Philpot Ln, EC3M 8AA</div></div>
           </div>
         </div>
-        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£114 + Cocktails Shard</span></div>
+        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£129 Tower + Bridge + Monument + Cocktails Shard</span></div>
       </div>
-  <div class="tip">⚡ <strong>Sofort buchen:</strong> Tower of London → <a href="https://www.hrp.org.uk/tower-of-london/visit/tickets/" target="_blank">hrp.org.uk</a> &nbsp;·&nbsp; Tower Bridge → <a href="https://www.towerbridge.org.uk/buy-tickets" target="_blank">towerbridge.org.uk</a></div>
+  <div class="tip">⚡ <strong>Sofort buchen:</strong> Tower of London → <a href="https://www.hrp.org.uk/tower-of-london/visit/tickets/" target="_blank">hrp.org.uk</a> &nbsp;·&nbsp; Tower Bridge → <a href="https://www.towerbridge.org.uk/buy-tickets" target="_blank">towerbridge.org.uk</a> &nbsp;·&nbsp; <strong>Bei Regen:</strong> Garden at 120 → Wagtail Rooftop Bar als wetterfeste Alternative.</div>
 </section>
 
 <hr class="day-div">
@@ -339,6 +432,7 @@
           <span class="rt rt-t">🚇 Paddington → South Kensington (Circle)</span>
           <span class="rt rt-t">🚇 South Kensington → Angel (Piccadilly)</span>
         </div>
+        <div class="day-weather dw-bad">🌧️ Schlechter Tag · 60% Regen · 12°C — Perfekt: Beide Museen sind indoor, Upper Street überdacht einkaufen</div>
       </div>
     </div>
     <a class="gbtn" href="https://www.google.com/maps/dir/Paddington+Station,+London/Natural+History+Museum,+London/Science+Museum,+London/Upper+Street,+Islington,+London/@51.505,-0.145,13z/" target="_blank">📍 Route in Google Maps</a>
@@ -412,12 +506,13 @@
           <span class="rt rt-b">⛵ Thames Clipper → Greenwich (45 Min)</span>
           <span class="rt rt-t">🚇 Greenwich → Highbury &amp; Islington (Overground)</span>
         </div>
+        <div class="day-weather dw-good">🌤️ Bester Tag · 20% Regen · 13°C — Alle Panorama-Highlights bewusst auf heute gelegt!</div>
       </div>
     </div>
-    <a class="gbtn" href="https://www.google.com/maps/dir/Embankment+Pier,+London/Cutty+Sark,+Greenwich/Greenwich+Market/Royal+Observatory,+Greenwich/Greenwich+Park,+London/@51.49,-0.01,13z/" target="_blank">📍 Route in Google Maps</a>
+    <a class="gbtn" href="https://www.google.com/maps/dir/Embankment+Pier,+London/Cutty+Sark,+Greenwich/Greenwich+Market/Royal+Observatory,+Greenwich/IFS+Cloud+Cable+Car+Greenwich+Peninsula/Greenwich+Park,+London/@51.49,-0.01,12z/" target="_blank">📍 Route in Google Maps</a>
   </div>
   <div class="card">
-        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">5 Stops</span></div>
+        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">6 Stops</span></div>
         <table>
           <thead><tr><th>Station</th><th>Typ</th><th>Preis (2E+1K)</th><th>Besonderheit</th><th>Website</th></tr></thead>
           <tbody>
@@ -425,35 +520,42 @@
               <td><div class="sn"><span class="si">⛵</span><div>Thames Clipper<div class="st">09:30 – 10:20</div></div></div></td>
               <td><span class="badge btr">Transport</span></td>
               <td><span class="pr pp">Oyster ~£5–8/P.</span></td>
-              <td class="nc">Von Embankment Pier. Tower Bridge passieren! Sa ab 9:40 Uhr.</td>
+              <td class="nc">Von Embankment Pier. Tower Bridge passieren! Sa ab 9:40 Uhr. <span class="wtag wt-out">☀️ Erlebnis bei Sonne optimal</span></td>
               <td><a class="wl" href="https://www.thamesclippers.com" target="_blank">🔗 thamesclippers.com</a></td>
             </tr>
             <tr>
               <td><div class="sn"><span class="si">⚓</span><div>Cutty Sark<div class="st">10:30 – 12:00</div></div></div></td>
               <td><span class="badge bp">Day Pass</span></td>
               <td><span class="pr pp">~£22+£22+£16 = <b>£60</b></span></td>
-              <td class="nc">Einziges erhaltenes Teeklipper weltweit! <strong>Sofort buchen — Ostern!</strong></td>
+              <td class="nc">Einziges erhaltenes Teeklipper weltweit! <strong>Sofort buchen — Ostern!</strong> <span class="wtag wt-in">🏛️ Indoor</span></td>
               <td><a class="wl" href="https://www.rmg.co.uk/plan-your-visit/tickets-prices" target="_blank">🔗 rmg.co.uk</a></td>
             </tr>
             <tr>
               <td><div class="sn"><span class="si">🥘</span><div>Greenwich Market<div class="st">12:00 – 13:00</div></div></div></td>
               <td><span class="badge bf">Kostenlos</span></td>
               <td><span class="pr pf">Gratis</span></td>
-              <td class="nc">2 Min Fußweg! Sa 10–17:30. Weltküche im UNESCO-Welterbe.</td>
+              <td class="nc">2 Min Fußweg! Sa 10–17:30. Weltküche im UNESCO-Welterbe. <span class="wtag wt-ok">🌂 Überdacht</span></td>
               <td><a class="wl" href="http://www.greenwichmarket.london" target="_blank">🔗 greenwichmarket.london</a></td>
             </tr>
             <tr>
               <td><div class="sn"><span class="si">🔭</span><div>Royal Observatory<div class="st">13:30 – 15:30</div></div></div></td>
               <td><span class="badge bf">Im Day Pass</span></td>
               <td><span class="pr pf">Inklusive</span></td>
-              <td class="nc"><strong>Auf der Meridianlinie stehen!</strong> Harrison-Uhren. Space-Show Sa 13:30 &amp; 15:30!</td>
+              <td class="nc"><strong>Auf der Meridianlinie stehen!</strong> Harrison-Uhren. Space-Show Sa 13:30 &amp; 15:30! <span class="wtag wt-out">☀️ Panorama bei Sonne spektakulär</span></td>
               <td><a class="wl" href="https://www.rmg.co.uk/royal-observatory" target="_blank">🔗 rmg.co.uk</a></td>
             </tr>
             <tr>
-              <td><div class="sn"><span class="si">🌳</span><div>Greenwich Park<div class="st">15:45 – 17:00</div></div></div></td>
+              <td><div class="sn"><span class="si">🚠</span><div>IFS Cloud Cable Car<div class="st">16:00 – 16:45</div></div></div></td>
+              <td><span class="badge bp">Bezahlt</span></td>
+              <td><span class="pr pp">£7+£7+£3.50 = <b>£17.50</b><br><small>Hinfahrt; Oyster möglich</small></span></td>
+              <td class="nc">90m über der Themse — 10 Min Fahrt von Greenwich nach Royal Docks. O2, Canary Wharf, Skyline. <strong>Der perfekte Sa-Abschluss!</strong> <span class="wtag wt-out">☀️ Bei Sonne sensationell</span></td>
+              <td><a class="wl" href="https://tfl.gov.uk/modes/london-cable-car/" target="_blank">🔗 tfl.gov.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🌳</span><div>Greenwich Park Panorama<div class="st">15:30 – 16:00</div></div></div></td>
               <td><span class="badge bf">Kostenlos</span></td>
               <td><span class="pr pf">Gratis</span></td>
-              <td class="nc">Bester kostenloser Panoramablick Londons — Canary Wharf, Shard, Gherkin. Sa bis 21:30.</td>
+              <td class="nc">Direkt nach dem Observatory. Bester kostenloser Panoramablick Londons. <span class="wtag wt-out">☀️ Bei Sonne unvergesslich</span></td>
               <td>–</td>
             </tr>
           </tbody>
@@ -462,27 +564,30 @@
           <div class="ftitle">🍴 Restaurantempfehlungen — nur ≥ 4.4 Google-Sterne</div>
           <div class="fgrid">
             <div class="fc"><div class="mt mtb">☕ Frühstück</div><div class="rn">Greenwich Morning</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.9</span><span class="rcnt">(349)</span></div><div class="desc">Bestes Frühstück Greenwich laut Locals. Frische Zutaten. Sa ab 7:00!</div><div class="addr">📍 17 Greenwich Church St, SE10 9BJ</div></div>
-            <div class="fc"><div class="mt mtl">🍽️ Mittag</div><div class="rn">Greenwich Market</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.5</span><span class="rcnt">(28.794)</span></div><div class="desc">Weltküche im UNESCO-Viertel. Koreanisch, Sushi, Thai, Türkisch. 2 Min von Cutty Sark.</div><div class="addr">📍 Greenwich Market, SE10 9HZ</div></div>
+            <div class="fc"><div class="mt mtl">🍽️ Mittag</div><div class="rn">Greenwich Market</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.5</span><span class="rcnt">(28.794)</span></div><div class="desc">Weltküche im UNESCO-Viertel. Koreanisch, Sushi, Thai, Türkisch. Überdacht — auch bei Regen!</div><div class="addr">📍 Greenwich Market, SE10 9HZ</div></div>
             <div class="fc"><div class="mt mtd">🌙 Abendessen</div><div class="rn">La Petite Auberge</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.5</span><span class="rcnt">(1.446)</span></div><div class="desc">Klassisch französisch auf Upper Street. Zurück in Islington — perfekter Abschlussabend.</div><div class="addr">📍 283 Upper St, N1 2TZ</div></div>
           </div>
         </div>
-        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£60 Day Pass + ~£24 Thames Clipper</span></div>
+        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£60 Day Pass + ~£24 Thames Clipper + ~£17.50 Cable Car</span></div>
       </div>
-  <div class="tip">⚡ <strong>Sofort buchen:</strong> Day Pass → <a href="https://www.rmg.co.uk/plan-your-visit/tickets-prices" target="_blank">rmg.co.uk</a> &nbsp;·&nbsp; <strong>Achtung:</strong> DLR Cutty Sark Station geschlossen bis Frühjahr 2026 — Thames Clipper oder Overground nutzen!</div>
+  <div class="tip">⚡ <strong>Sofort buchen:</strong> Day Pass → <a href="https://www.rmg.co.uk/plan-your-visit/tickets-prices" target="_blank">rmg.co.uk</a> &nbsp;·&nbsp; Cable Car: Oyster direkt vor Ort oder online → <a href="https://tfl.gov.uk/modes/london-cable-car/" target="_blank">tfl.gov.uk</a> &nbsp;·&nbsp; <strong>Achtung:</strong> DLR Cutty Sark Station geschlossen — Thames Clipper nutzen!</div>
 </section>
 
 <!-- BUCHUNGS-CHECKLISTE -->
 <section class="bsec">
   <h3>🎟️ Sofort-Buchungen — Checkliste</h3>
   <div class="bgrid">
-    <div class="bi urg"><div class="bn">🎡 London Eye</div><div class="bnt">Mi 1. April, 18:30 Uhr — Sonnenuntergang!</div><a href="https://www.londoneye.com" target="_blank">→ londoneye.com</a></div>
+    <div class="bi urg"><div class="bn">🎡 London Eye</div><div class="bnt">Mi 1. April, 18:30 Uhr — Sonnenuntergang! Bei Regen ggf. flexibel halten.</div><a href="https://www.londoneye.com" target="_blank">→ londoneye.com</a></div>
     <div class="bi urg"><div class="bn">🏰 Tower of London</div><div class="bnt">Do 2. April — Ostern = schnell ausgebucht!</div><a href="https://www.hrp.org.uk/tower-of-london" target="_blank">→ hrp.org.uk</a></div>
-    <div class="bi urg"><div class="bn">⚓ Greenwich Day Pass</div><div class="bnt">Sa 4. April — Cutty Sark + Observatory</div><a href="https://www.rmg.co.uk/plan-your-visit/tickets-prices" target="_blank">→ rmg.co.uk</a></div>
-    <div class="bi"><div class="bn">🐴 Royal Mews</div><div class="bnt">Mi 1. April — £18/Erw., £9/Kind</div><a href="https://www.rct.uk/visit/the-royal-mews-buckingham-palace" target="_blank">→ rct.uk</a></div>
+    <div class="bi urg"><div class="bn">⚓ Greenwich Day Pass</div><div class="bnt">Sa 4. April — Cutty Sark + Observatory. Bestes Wetter!</div><a href="https://www.rmg.co.uk/plan-your-visit/tickets-prices" target="_blank">→ rmg.co.uk</a></div>
+    <div class="bi"><div class="bn">🏭 Chimney Lift Battersea</div><div class="bnt">Mi 1. April — online günstiger, ab ~£21/Erw., £16/Kind</div><a href="https://thechimneylift.co.uk/tickets/" target="_blank">→ thechimneylift.co.uk</a></div>
+    <div class="bi"><div class="bn">🐴 Royal Mews</div><div class="bnt">Mi 1. April — £18/Erw., £9/Kind. Vorab buchen.</div><a href="https://www.rct.uk/visit/the-royal-mews-buckingham-palace" target="_blank">→ rct.uk</a></div>
     <div class="bi"><div class="bn">🌉 Tower Bridge</div><div class="bnt">Do 2. April — ~£11/Erw., £5/Kind</div><a href="https://www.towerbridge.org.uk" target="_blank">→ towerbridge.org.uk</a></div>
+    <div class="bi"><div class="bn">🔥 The Monument</div><div class="bnt">Do 2. April — £6/Erw., £3/Kind. Walk-up ok, aber vorab prüfen.</div><a href="https://www.themonument.org.uk/plan/buy-tickets" target="_blank">→ themonument.org.uk</a></div>
     <div class="bi"><div class="bn">🚀 Wonderlab Science Museum</div><div class="bnt">Fr 3. April — 14+ Tage vorher = £3 Rabatt/P.!</div><a href="https://www.sciencemuseum.org.uk/see-and-do/wonderlab-equinox-gallery" target="_blank">→ sciencemuseum.org.uk</a></div>
     <div class="bi"><div class="bn">🦕 Natural History Museum</div><div class="bnt">Fr 3. April — kostenlos, Zeitslot reservieren</div><a href="https://www.nhm.ac.uk/visit/book-free-tickets.html" target="_blank">→ nhm.ac.uk</a></div>
-    <div class="bi"><div class="bn">⛪ Kirchen kostenlos</div><div class="bnt">Westminster Abbey + St. Paul's via Gottesdienst</div><a href="https://www.westminster-abbey.org/worship-music/services-and-times" target="_blank">→ Zeiten prüfen</a></div>
+    <div class="bi"><div class="bn">🚠 IFS Cloud Cable Car</div><div class="bnt">Sa 4. April — auch Oyster/Kontaktlos möglich. Kein Vorabbuchen nötig.</div><a href="https://tfl.gov.uk/modes/london-cable-car/" target="_blank">→ tfl.gov.uk</a></div>
+    <div class="bi"><div class="bn">⛪ Kirchen kostenlos</div><div class="bnt">Westminster Abbey + St. Paul's via Gottesdienst — kein Ticket</div><a href="https://www.westminster-abbey.org/worship-music/services-and-times" target="_blank">→ Zeiten prüfen</a></div>
   </div>
 </section>
 
