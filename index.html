@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>London April 2026 — Familienreise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1a1a2e; --cream:#f5f0e8; --red:#c0392b; --gold:#c9a84c;
+    --soft:#e8e4dc; --muted:#7a7570; --green:#2d6a4f; --blue:#2c5f8a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;}
+
+  header{background:var(--ink);color:var(--cream);padding:60px 40px 50px;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(192,57,43,.18) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(201,168,76,.12) 0%,transparent 50%);}
+  header .inner{position:relative;z-index:1;}
+  .lbl{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block;}
+  header h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:16px;}
+  header h1 em{font-style:italic;color:var(--gold);}
+  .sub{font-size:15px;color:rgba(245,240,232,.65);}
+  .meta-bar{display:flex;justify-content:center;gap:40px;margin-top:32px;padding-top:32px;border-top:1px solid rgba(245,240,232,.15);flex-wrap:wrap;}
+  .mi{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .mi .v{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);}
+  .mi .l{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,.5);}
+
+  nav{background:white;border-bottom:2px solid var(--soft);padding:0 24px;display:flex;overflow-x:auto;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.07);}
+  nav a{display:flex;align-items:center;gap:8px;padding:15px 16px;text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+  nav a:hover{color:var(--ink);border-bottom-color:var(--red);}
+  .np{background:var(--soft);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;transition:all .2s;}
+  nav a:hover .np{background:var(--red);color:white;}
+
+  main{max-width:1200px;margin:0 auto;padding:0 24px 80px;}
+  .day-section{margin-top:64px;}
+  .day-div{border:none;border-top:2px solid var(--soft);margin:64px 0 0;}
+
+  .day-hdr{display:flex;gap:24px;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;}
+  .day-hdr-left{display:flex;gap:24px;align-items:start;flex:1;min-width:0;}
+  .gbtn{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:white;text-decoration:none;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;transition:background .2s;white-space:nowrap;flex-shrink:0;}
+  .gbtn:hover{background:#1a4a6e;}
+  .day-badge{background:var(--ink);color:var(--gold);padding:16px 20px;text-align:center;border-radius:10px;min-width:88px;}
+  .db-s{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:rgba(201,168,76,.6);display:block;}
+  .db-n{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;line-height:1;display:block;}
+  .db-m{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(201,168,76,.6);}
+  .day-ttl h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;line-height:1.2;margin-bottom:10px;}
+  .rtags{display:flex;flex-wrap:wrap;gap:8px;}
+  .rt{border-radius:20px;padding:3px 12px;font-size:12px;font-weight:600;}
+  .rt-t{background:#1a3a6b;color:white;}
+  .rt-w{background:#2d6a4f;color:white;}
+  .rt-b{background:#1a5276;color:white;}
+  .rt-i{background:var(--soft);color:var(--ink);}
+
+  .day-grid{display:block;}
+  .map-sticky{display:none;}
+
+  .card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+  .ch{padding:16px 22px;border-bottom:2px solid var(--soft);display:flex;align-items:center;justify-content:space-between;}
+  .ch h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;}
+  .cbadge{font-size:12px;color:var(--muted);background:var(--soft);padding:4px 10px;border-radius:20px;}
+
+  table{width:100%;border-collapse:collapse;}
+  thead tr{background:var(--soft);}
+  thead th{padding:9px 13px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);white-space:nowrap;}
+  tbody tr{border-bottom:1px solid var(--soft);transition:background .15s;}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:#fafaf7;}
+  td{padding:11px 13px;font-size:13px;vertical-align:top;}
+
+  .sn{font-weight:600;display:flex;align-items:flex-start;gap:7px;}
+  .si{font-size:15px;flex-shrink:0;margin-top:1px;}
+  .st{font-size:11px;color:var(--muted);font-weight:400;margin-top:2px;}
+  .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+  .bf{background:#eafaf1;color:#1e8449;}
+  .bp{background:#fdf2f8;color:#8e44ad;}
+  .bs{background:#eaf2ff;color:#1a5276;}
+  .bfood{background:#fff3e0;color:#b7600a;}
+  .btr{background:#f0f0f0;color:#555;}
+  .pr{font-weight:700;white-space:nowrap;}
+  .pf{color:var(--green);}
+  .pp{color:var(--ink);}
+  .nc{font-size:12px;color:var(--muted);line-height:1.4;max-width:195px;}
+  .nc strong{color:var(--red);}
+  .wl{color:var(--blue);text-decoration:none;font-size:12px;font-weight:600;}
+  .wl:hover{text-decoration:underline;}
+
+  .frow{background:#fdf8f0;border-top:2px solid var(--soft);padding:14px 22px 18px;}
+  .ftitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;}
+  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  @media(max-width:680px){.fgrid{grid-template-columns:1fr;}}
+  .fc{background:white;border-radius:8px;padding:12px;border:1px solid var(--soft);}
+  .fc .mt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+  .mtb{color:#e67e22;}.mtl{color:#27ae60;}.mtd{color:#8e44ad;}
+  .fc .rn{font-weight:700;font-size:13px;color:var(--ink);margin-bottom:3px;line-height:1.2;}
+  .fc .rat{display:flex;align-items:center;gap:4px;margin-bottom:4px;}
+  .stars{color:#f1c40f;font-size:11px;}
+  .rnum{font-weight:700;font-size:12px;}
+  .rcnt{font-size:11px;color:var(--muted);}
+  .fc .desc{font-size:12px;color:var(--muted);line-height:1.4;}
+  .fc .addr{font-size:11px;color:var(--muted);margin-top:4px;}
+
+  .cbar{background:var(--ink);color:white;padding:9px 22px;display:flex;justify-content:space-between;font-size:12px;}
+  .cbar .cl{color:rgba(255,255,255,.6);}
+  .cbar .ct{font-weight:700;color:var(--gold);}
+
+  .tip{background:#fff9ee;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 15px;margin-top:12px;font-size:13px;}
+  .tip strong{color:#8a6200;}
+  .tip a{color:#8a6200;font-weight:600;}
+
+  .map-sticky{position:sticky;top:65px;}
+  .mcard{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.08);}
+  .mhdr{padding:13px 16px;border-bottom:1px solid var(--soft);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+  .mhdr .mt2{font-size:13px;font-weight:700;color:var(--ink);}
+  .gbtn{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:white;text-decoration:none;padding:7px 13px;border-radius:6px;font-size:12px;font-weight:600;transition:background .2s;white-space:nowrap;}
+  .gbtn:hover{background:#1a4a6e;}
+  .osm{width:100%;height:290px;border:none;display:block;}
+
+  .rviz{padding:14px 16px 18px;}
+  .rvtitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;}
+  .rs{display:flex;align-items:flex-start;gap:10px;}
+  .rs:last-child .rsc{display:none;}
+  .rsl{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+  .rsd{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:white;flex-shrink:0;}
+  .rsc{width:2px;height:18px;background:var(--soft);margin:0 auto;}
+  .rsr{padding-bottom:18px;padding-top:3px;}
+  .rsn{font-size:13px;font-weight:600;color:var(--ink);line-height:1.2;}
+  .rsm{font-size:11px;color:var(--muted);margin-top:1px;}
+  .rsf{font-size:11px;color:#e67e22;font-weight:600;margin-top:2px;}
+
+  .bsec{background:white;border-radius:12px;padding:30px;margin-top:48px;box-shadow:0 2px 16px rgba(0,0,0,.06);border-top:4px solid var(--red);}
+  .bsec h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:18px;}
+  .bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+  .bi{background:var(--soft);border-radius:8px;padding:13px;}
+  .bi.urg{border-left:3px solid var(--red);}
+  .bi .bn{font-weight:700;font-size:13px;color:var(--ink);}
+  .bi.urg .bn{color:var(--red);}
+  .bi .bnt{font-size:12px;color:var(--muted);margin-top:2px;}
+  .bi a{color:var(--blue);font-size:12px;font-weight:600;text-decoration:none;display:block;margin-top:5px;}
+
+  footer{background:var(--ink);color:rgba(245,240,232,.5);text-align:center;padding:28px;font-size:12px;letter-spacing:.5px;margin-top:80px;}
+  footer strong{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <span class="lbl">Reiseplan · Familie · 3 Personen</span>
+    <h1>London <em>April</em> 2026</h1>
+    <p class="sub">Mittwoch 1. April — Samstag 4. April &nbsp;·&nbsp; <a href="https://www.discoverasr.com/citadines/united-kingdom/citadines-islington-london" target="_blank" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">Citadines Islington</a>, Angel</p>
+    <div class="meta-bar">
+      <div class="mi"><span class="v">4</span><span class="l">Tage</span></div>
+      <div class="mi"><span class="v">25+</span><span class="l">Stationen</span></div>
+      <div class="mi"><span class="v">~£520</span><span class="l">Tickets gesamt</span></div>
+      <div class="mi"><span class="v">12</span><span class="l">Restaurants ≥4.4★</span></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <a href="#t1"><span class="np">Mi 1.</span> Westminster &amp; London Eye</a>
+  <a href="#t2"><span class="np">Do 2.</span> City &amp; The Shard</a>
+  <a href="#t3"><span class="np">Fr 3.</span> Paddington &amp; Museen</a>
+  <a href="#t4"><span class="np">Sa 4.</span> Greenwich</a>
+</nav>
+
+<main>
+
+<!-- TAG 1 -->
+<section class="day-section" id="t1">
+  <div class="day-hdr">
+    <div class="day-hdr-left">
+      <div class="day-badge"><span class="db-s">Mi</span><span class="db-n">1.</span><span class="db-m">April</span></div>
+      <div class="day-ttl">
+        <h2>Westminster, Covent Garden &amp; London Eye bei Sonnenuntergang</h2>
+        <div class="rtags">
+          <span class="rt rt-t">🚇 Northern → Westminster</span>
+          <span class="rt rt-w">🚶 Zu Fuß durch die City</span>
+          <span class="rt rt-t">🚇 Waterloo → Angel</span>
+          <span class="rt rt-i">🌅 Sonnenuntergang 19:33 Uhr</span>
+        </div>
+      </div>
+    </div>
+    <a class="gbtn" href="https://www.google.com/maps/dir/Westminster+Abbey,+London/Buckingham+Palace+Royal+Mews,+London/Covent+Garden,+London/Seven+Dials,+London/Chinatown,+Gerrard+Street,+London/London+Eye,+London/Southbank+Skate+Space,+London/@51.5,-0.12,14z/" target="_blank">📍 Route in Google Maps</a>
+  </div>
+  <div class="card">
+        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">7 Stops</span></div>
+        <table>
+          <thead><tr><th>Station</th><th>Typ</th><th>Preis (2E+1K)</th><th>Besonderheit</th><th>Website</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="sn"><span class="si">⛪</span><div>Westminster Abbey<div class="st">10:00 – 10:45</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Gottesdienst via Great West Door. Kirchenschiff kostenlos. <strong>Früh ankommen!</strong></td>
+              <td><a class="wl" href="https://www.westminster-abbey.org/worship-music/services-and-times" target="_blank">🔗 Zeiten</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🐴</span><div>Royal Mews<div class="st">11:00 – 12:30</div></div></div></td>
+              <td><span class="badge bp">Bezahlt</span></td>
+              <td><span class="pr pp">£18+£18+£9 = <b>£45</b></span></td>
+              <td class="nc">Gold State Coach, Königspferde. <strong>Vorab buchen!</strong> Do–Mo geöffnet.</td>
+              <td><a class="wl" href="https://www.rct.uk/visit/the-royal-mews-buckingham-palace" target="_blank">🔗 rct.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🎭</span><div>Covent Garden<div class="st">13:00 – 14:30</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Straßenkünstler, Markthalle, Shops. Mittagessen hier.</td>
+              <td><a class="wl" href="https://www.coventgarden.london" target="_blank">🔗 Website</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🔵</span><div>Seven Dials<div class="st">14:30 – 15:15</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">7 Straßen, unabhängige Shops, cooler Vibe. 5 Min von Covent Garden.</td>
+              <td><a class="wl" href="https://sevendials.london" target="_blank">🔗 Website</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🏮</span><div>Chinatown<div class="st">15:15 – 16:00</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Gerrard Street, rote Lampions. Snack-Stop.</td>
+              <td><a class="wl" href="http://chinatown.co.uk" target="_blank">🔗 Website</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🎡</span><div>London Eye<div class="st">18:15 – 19:15</div></div></div></td>
+              <td><span class="badge bp">Bezahlt</span></td>
+              <td><span class="pr pp" style="color:var(--red)">ab £29/Erw.<br><b>18:30 Uhr buchen!</b></span></td>
+              <td class="nc"><strong>Sonnenuntergang 19:33 — goldenes Licht!</strong> Frühlings-Edition bis Mai.</td>
+              <td><a class="wl" href="https://www.londoneye.com" target="_blank">🔗 londoneye.com</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🛹</span><div>Southbank Skate Space<div class="st">19:30 – 20:30</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Ältestes Skatespot der Welt. Mi bis 23:00!</td>
+              <td><a class="wl" href="https://www.southbankcentre.co.uk/venues/outdoor-spaces/undercroft-skate-space/" target="_blank">🔗 Website</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="frow">
+          <div class="ftitle">🍴 Restaurantempfehlungen — nur ≥ 4.4 Google-Sterne</div>
+          <div class="fgrid">
+            <div class="fc"><div class="mt mtb">☕ Frühstück</div><div class="rn">Timmy Green</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.6</span><span class="rcnt">(4.453)</span></div><div class="desc">Australisches Café bei Buckingham Palace. Beste Pancakes, top Kaffee. Ab 7:30.</div><div class="addr">📍 11 Sir Simon Milton Sq, SW1E</div></div>
+            <div class="fc"><div class="mt mtl">🍽️ Mittag</div><div class="rn">Brother Marcus Covent Garden</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.9</span><span class="rcnt">(4.662)</span></div><div class="desc">Mediterranes Restaurant in Covent Garden. Pita, Mezze, Halloumi. Außergewöhnlich!</div><div class="addr">📍 23 Slingsby Pl, WC2E 9AB</div></div>
+            <div class="fc"><div class="mt mtd">🌙 Abendessen</div><div class="rn">Brasserie Blanc Southbank</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.4</span><span class="rcnt">(1.784)</span></div><div class="desc">Französische Brasserie, 2 Min vom London Eye. Perfekt zum Abschluss.</div><div class="addr">📍 9 Belvedere Rd, SE1 8YL</div></div>
+          </div>
+        </div>
+        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£45 Royal Mews + London Eye-Tickets</span></div>
+      </div>
+  <div class="tip">⚡ <strong>Sofort buchen:</strong> London Eye 18:30 Uhr → <a href="https://www.londoneye.com" target="_blank">londoneye.com</a> &nbsp;·&nbsp; Royal Mews → <a href="https://www.rct.uk/visit/the-royal-mews-buckingham-palace" target="_blank">rct.uk</a></div>
+</section>
+
+<hr class="day-div">
+
+<!-- TAG 2 -->
+<section class="day-section" id="t2">
+  <div class="day-hdr">
+    <div class="day-hdr-left">
+      <div class="day-badge"><span class="db-s">Do</span><span class="db-n">2.</span><span class="db-m">April</span></div>
+      <div class="day-ttl">
+        <h2>City of London: Tower, Bridge, Borough Market &amp; The Shard</h2>
+        <div class="rtags">
+          <span class="rt rt-t">🚇 Angel → Tower Hill (Circle)</span>
+          <span class="rt rt-w">🚶 Zu Fuß westlich entlang Themse</span>
+          <span class="rt rt-t">🚇 Bank → Angel</span>
+        </div>
+      </div>
+    </div>
+    <a class="gbtn" href="https://www.google.com/maps/dir/Tower+of+London,+London/Tower+Bridge,+London/Borough+Market,+London/The+Shard,+London/120+Fenchurch+Street,+London/@51.506,-0.083,14z/" target="_blank">📍 Route in Google Maps</a>
+  </div>
+  <div class="card">
+        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">5 Stops</span></div>
+        <table>
+          <thead><tr><th>Station</th><th>Typ</th><th>Preis (2E+1K)</th><th>Besonderheit</th><th>Website</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="sn"><span class="si">🏰</span><div>Tower of London<div class="st">09:00 – 11:30</div></div></div></td>
+              <td><span class="badge bp">Bezahlt</span></td>
+              <td><span class="pr pp">£34.80×2+£17.40<br>= <b>£87</b></span></td>
+              <td class="nc"><strong>Sofort buchen!</strong> Ostern = ausgebucht. Crown Jewels, Beefeaters.</td>
+              <td><a class="wl" href="https://www.hrp.org.uk/tower-of-london" target="_blank">🔗 hrp.org.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🌉</span><div>Tower Bridge<div class="st">11:30 – 13:00</div></div></div></td>
+              <td><span class="badge bp">Bezahlt</span></td>
+              <td><span class="pr pp">~£11+£11+£5 = <b>~£27</b></span></td>
+              <td class="nc">Glas-Gehweg 43m Höhe, Maschinenraum. 5 Min Fußweg.</td>
+              <td><a class="wl" href="https://www.towerbridge.org.uk" target="_blank">🔗 towerbridge.org.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🥕</span><div>Borough Market<div class="st">13:00 – 14:00</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Do 10–17. Weltklasse Streetfood. 10 Min Fußweg über London Bridge.</td>
+              <td><a class="wl" href="https://boroughmarket.org.uk" target="_blank">🔗 boroughmarket.org.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🏙️</span><div>The Shard — Hutong Bar<div class="st">14:30 – 16:00</div></div></div></td>
+              <td><span class="badge bfood">Walk-in</span></td>
+              <td><span class="pr pp">~£25/Cocktail</span></td>
+              <td class="nc">Level 33, Shanghai Bar. Panoramablick. <strong>Tea Time 14–15 Uhr am ruhigsten!</strong></td>
+              <td><a class="wl" href="https://hutong.co.uk/bar/" target="_blank">🔗 hutong.co.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🌿</span><div>Garden at 120<div class="st">16:30 – 17:30</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Kein Buchen! 360°-Blick, Gherkin auf Augenhöhe. Do bis 18:30 ✅</td>
+              <td><a class="wl" href="https://www.thegardenat120.com" target="_blank">🔗 Website</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="frow">
+          <div class="ftitle">🍴 Restaurantempfehlungen — nur ≥ 4.4 Google-Sterne</div>
+          <div class="fgrid">
+            <div class="fc"><div class="mt mtb">☕ Frühstück</div><div class="rn">The Cardinal Bar &amp; Kitchen</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.8</span><span class="rcnt">(1.122)</span></div><div class="desc">Direkt am Tower, ab 7:00. Internationale Küche, hervorragend bewertet.</div><div class="addr">📍 9 Aldgate High St, EC3N 1AH</div></div>
+            <div class="fc"><div class="mt mtl">🍽️ Mittag</div><div class="rn">Borough Market</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.6</span><span class="rcnt">(124.781)</span></div><div class="desc">Einer der besten Märkte der Welt. Frisches Streetfood aus aller Welt. Do ab 10!</div><div class="addr">📍 Borough Market, SE1 9AH</div></div>
+            <div class="fc"><div class="mt mtd">🌙 Abendessen</div><div class="rn">Blacklock City</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.7</span><span class="rcnt">(3.444)</span></div><div class="desc">Legendäres Steakhaus in der City. Chops &amp; Cocktails. Do Abend bis 22:00.</div><div class="addr">📍 13 Philpot Ln, EC3M 8AA</div></div>
+          </div>
+        </div>
+        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£114 + Cocktails Shard</span></div>
+      </div>
+  <div class="tip">⚡ <strong>Sofort buchen:</strong> Tower of London → <a href="https://www.hrp.org.uk/tower-of-london/visit/tickets/" target="_blank">hrp.org.uk</a> &nbsp;·&nbsp; Tower Bridge → <a href="https://www.towerbridge.org.uk/buy-tickets" target="_blank">towerbridge.org.uk</a></div>
+</section>
+
+<hr class="day-div">
+
+<!-- TAG 3 -->
+<section class="day-section" id="t3">
+  <div class="day-hdr">
+    <div class="day-hdr-left">
+      <div class="day-badge"><span class="db-s">Fr</span><span class="db-n">3.</span><span class="db-m">April</span></div>
+      <div class="day-ttl">
+        <h2>Paddington Bär, Natural History Museum, Science Museum &amp; Upper Street</h2>
+        <div class="rtags">
+          <span class="rt rt-t">🚇 Angel → Paddington (Circle)</span>
+          <span class="rt rt-t">🚇 Paddington → South Kensington (Circle)</span>
+          <span class="rt rt-t">🚇 South Kensington → Angel (Piccadilly)</span>
+        </div>
+      </div>
+    </div>
+    <a class="gbtn" href="https://www.google.com/maps/dir/Paddington+Station,+London/Natural+History+Museum,+London/Science+Museum,+London/Upper+Street,+Islington,+London/@51.505,-0.145,13z/" target="_blank">📍 Route in Google Maps</a>
+  </div>
+  <div class="card">
+        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">5 Stops</span></div>
+        <table>
+          <thead><tr><th>Station</th><th>Typ</th><th>Preis</th><th>Besonderheit</th><th>Website</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="sn"><span class="si">🐻</span><div>Paddington Bear Statue<div class="st">09:45 – 10:15</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Bahnsteig 1 unter der großen Uhr. Pfotenabdrücken auf dem Boden folgen! 24/7.</td>
+              <td>–</td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🦕</span><div>Natural History Museum<div class="st">10:30 – 12:30</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Blauwalskelett "Hope", T-Rex, Vulkan-Simulator. Freies Ticket vorab reservieren!</td>
+              <td><a class="wl" href="https://www.nhm.ac.uk/visit/book-free-tickets.html" target="_blank">🔗 nhm.ac.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🚀</span><div>Science Museum<div class="st">12:45 – 15:30</div></div></div></td>
+              <td><span class="badge bs">Teilw. kostenlos</span></td>
+              <td><span class="pr pp">Gratis (Museum)<br>£17/P. (Wonderlab)</span></td>
+              <td class="nc">Interaktiv, Raumfahrt. Wonderlab: explosiv für Kinder. <strong>14+ Tage vorher = £3 Rabatt!</strong></td>
+              <td><a class="wl" href="https://www.sciencemuseum.org.uk" target="_blank">🔗 sciencemuseum.org.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">☕</span><div>High Ground Café<div class="st">16:00 – 17:00</div></div></div></td>
+              <td><span class="badge bfood">Café</span></td>
+              <td><span class="pr pp">~£5–10/P.</span></td>
+              <td class="nc">4.8★ Café Upper Street. Fr bis 22:00. Kaffeebar &amp; Weinbar.</td>
+              <td>–</td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🛍️</span><div>Upper Street Islington<div class="st">17:00 – 19:00</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Unabhängige Shops, Restaurants. 5 Min vom Hotel.</td>
+              <td>–</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="frow">
+          <div class="ftitle">🍴 Restaurantempfehlungen — nur ≥ 4.4 Google-Sterne</div>
+          <div class="fgrid">
+            <div class="fc"><div class="mt mtb">☕ Frühstück</div><div class="rn">Brother Marcus South Kensington</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.7</span><span class="rcnt">(3.454)</span></div><div class="desc">Östliches Mittelmeer, 2 Min vom NHM. Shakshuka, Fritters. Fr ab 7:30.</div><div class="addr">📍 1–3 Pelham St, SW7 2ND</div></div>
+            <div class="fc"><div class="mt mtl">🍽️ Mittag</div><div class="rn">Farm Girl South Kensington</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.4</span><span class="rcnt">(3.057)</span></div><div class="desc">Vegan/veggie auf der Exhibition Rd. Apple-Pear-Pancakes, glutenfreie Optionen.</div><div class="addr">📍 8 Exhibition Rd, SW7 2HF</div></div>
+            <div class="fc"><div class="mt mtd">🌙 Abendessen</div><div class="rn">Mr LoBo</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.9</span><span class="rcnt">(502)</span></div><div class="desc">Peruanisch auf der Upper Street, 1 Min vom Hotel. Ceviche, Pisco Sour. Fr ab 12 Uhr.</div><div class="addr">📍 176 Upper St, N1 1RG</div></div>
+          </div>
+        </div>
+        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£51 Wonderlab — sonst kostenlos</span></div>
+      </div>
+  <div class="tip">💡 <strong>Wonderlab:</strong> 14+ Tage vorher buchen = <strong>£3 Rabatt/Person</strong> → <a href="https://www.sciencemuseum.org.uk/see-and-do/wonderlab-equinox-gallery" target="_blank">sciencemuseum.org.uk</a></div>
+</section>
+
+<hr class="day-div">
+
+<!-- TAG 4 -->
+<section class="day-section" id="t4">
+  <div class="day-hdr">
+    <div class="day-hdr-left">
+      <div class="day-badge"><span class="db-s">Sa</span><span class="db-n">4.</span><span class="db-m">April</span></div>
+      <div class="day-ttl">
+        <h2>Greenwich: Thames Clipper, Cutty Sark &amp; Royal Observatory</h2>
+        <div class="rtags">
+          <span class="rt rt-t">🚇 Angel → Embankment (Northern)</span>
+          <span class="rt rt-b">⛵ Thames Clipper → Greenwich (45 Min)</span>
+          <span class="rt rt-t">🚇 Greenwich → Highbury &amp; Islington (Overground)</span>
+        </div>
+      </div>
+    </div>
+    <a class="gbtn" href="https://www.google.com/maps/dir/Embankment+Pier,+London/Cutty+Sark,+Greenwich/Greenwich+Market/Royal+Observatory,+Greenwich/Greenwich+Park,+London/@51.49,-0.01,13z/" target="_blank">📍 Route in Google Maps</a>
+  </div>
+  <div class="card">
+        <div class="ch"><h3>Stationen &amp; Highlights</h3><span class="cbadge">5 Stops</span></div>
+        <table>
+          <thead><tr><th>Station</th><th>Typ</th><th>Preis (2E+1K)</th><th>Besonderheit</th><th>Website</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="sn"><span class="si">⛵</span><div>Thames Clipper<div class="st">09:30 – 10:20</div></div></div></td>
+              <td><span class="badge btr">Transport</span></td>
+              <td><span class="pr pp">Oyster ~£5–8/P.</span></td>
+              <td class="nc">Von Embankment Pier. Tower Bridge passieren! Sa ab 9:40 Uhr.</td>
+              <td><a class="wl" href="https://www.thamesclippers.com" target="_blank">🔗 thamesclippers.com</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">⚓</span><div>Cutty Sark<div class="st">10:30 – 12:00</div></div></div></td>
+              <td><span class="badge bp">Day Pass</span></td>
+              <td><span class="pr pp">~£22+£22+£16 = <b>£60</b></span></td>
+              <td class="nc">Einziges erhaltenes Teeklipper weltweit! <strong>Sofort buchen — Ostern!</strong></td>
+              <td><a class="wl" href="https://www.rmg.co.uk/plan-your-visit/tickets-prices" target="_blank">🔗 rmg.co.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🥘</span><div>Greenwich Market<div class="st">12:00 – 13:00</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">2 Min Fußweg! Sa 10–17:30. Weltküche im UNESCO-Welterbe.</td>
+              <td><a class="wl" href="http://www.greenwichmarket.london" target="_blank">🔗 greenwichmarket.london</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🔭</span><div>Royal Observatory<div class="st">13:30 – 15:30</div></div></div></td>
+              <td><span class="badge bf">Im Day Pass</span></td>
+              <td><span class="pr pf">Inklusive</span></td>
+              <td class="nc"><strong>Auf der Meridianlinie stehen!</strong> Harrison-Uhren. Space-Show Sa 13:30 &amp; 15:30!</td>
+              <td><a class="wl" href="https://www.rmg.co.uk/royal-observatory" target="_blank">🔗 rmg.co.uk</a></td>
+            </tr>
+            <tr>
+              <td><div class="sn"><span class="si">🌳</span><div>Greenwich Park<div class="st">15:45 – 17:00</div></div></div></td>
+              <td><span class="badge bf">Kostenlos</span></td>
+              <td><span class="pr pf">Gratis</span></td>
+              <td class="nc">Bester kostenloser Panoramablick Londons — Canary Wharf, Shard, Gherkin. Sa bis 21:30.</td>
+              <td>–</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="frow">
+          <div class="ftitle">🍴 Restaurantempfehlungen — nur ≥ 4.4 Google-Sterne</div>
+          <div class="fgrid">
+            <div class="fc"><div class="mt mtb">☕ Frühstück</div><div class="rn">Greenwich Morning</div><div class="rat"><span class="stars">★★★★★</span><span class="rnum">4.9</span><span class="rcnt">(349)</span></div><div class="desc">Bestes Frühstück Greenwich laut Locals. Frische Zutaten. Sa ab 7:00!</div><div class="addr">📍 17 Greenwich Church St, SE10 9BJ</div></div>
+            <div class="fc"><div class="mt mtl">🍽️ Mittag</div><div class="rn">Greenwich Market</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.5</span><span class="rcnt">(28.794)</span></div><div class="desc">Weltküche im UNESCO-Viertel. Koreanisch, Sushi, Thai, Türkisch. 2 Min von Cutty Sark.</div><div class="addr">📍 Greenwich Market, SE10 9HZ</div></div>
+            <div class="fc"><div class="mt mtd">🌙 Abendessen</div><div class="rn">La Petite Auberge</div><div class="rat"><span class="stars">★★★★</span><span class="rnum">4.5</span><span class="rcnt">(1.446)</span></div><div class="desc">Klassisch französisch auf Upper Street. Zurück in Islington — perfekter Abschlussabend.</div><div class="addr">📍 283 Upper St, N1 2TZ</div></div>
+          </div>
+        </div>
+        <div class="cbar"><span class="cl">Tageskosten Eintritt</span><span class="ct">~£60 Day Pass + ~£24 Thames Clipper</span></div>
+      </div>
+  <div class="tip">⚡ <strong>Sofort buchen:</strong> Day Pass → <a href="https://www.rmg.co.uk/plan-your-visit/tickets-prices" target="_blank">rmg.co.uk</a> &nbsp;·&nbsp; <strong>Achtung:</strong> DLR Cutty Sark Station geschlossen bis Frühjahr 2026 — Thames Clipper oder Overground nutzen!</div>
+</section>
+
+<!-- BUCHUNGS-CHECKLISTE -->
+<section class="bsec">
+  <h3>🎟️ Sofort-Buchungen — Checkliste</h3>
+  <div class="bgrid">
+    <div class="bi urg"><div class="bn">🎡 London Eye</div><div class="bnt">Mi 1. April, 18:30 Uhr — Sonnenuntergang!</div><a href="https://www.londoneye.com" target="_blank">→ londoneye.com</a></div>
+    <div class="bi urg"><div class="bn">🏰 Tower of London</div><div class="bnt">Do 2. April — Ostern = schnell ausgebucht!</div><a href="https://www.hrp.org.uk/tower-of-london" target="_blank">→ hrp.org.uk</a></div>
+    <div class="bi urg"><div class="bn">⚓ Greenwich Day Pass</div><div class="bnt">Sa 4. April — Cutty Sark + Observatory</div><a href="https://www.rmg.co.uk/plan-your-visit/tickets-prices" target="_blank">→ rmg.co.uk</a></div>
+    <div class="bi"><div class="bn">🐴 Royal Mews</div><div class="bnt">Mi 1. April — £18/Erw., £9/Kind</div><a href="https://www.rct.uk/visit/the-royal-mews-buckingham-palace" target="_blank">→ rct.uk</a></div>
+    <div class="bi"><div class="bn">🌉 Tower Bridge</div><div class="bnt">Do 2. April — ~£11/Erw., £5/Kind</div><a href="https://www.towerbridge.org.uk" target="_blank">→ towerbridge.org.uk</a></div>
+    <div class="bi"><div class="bn">🚀 Wonderlab Science Museum</div><div class="bnt">Fr 3. April — 14+ Tage vorher = £3 Rabatt/P.!</div><a href="https://www.sciencemuseum.org.uk/see-and-do/wonderlab-equinox-gallery" target="_blank">→ sciencemuseum.org.uk</a></div>
+    <div class="bi"><div class="bn">🦕 Natural History Museum</div><div class="bnt">Fr 3. April — kostenlos, Zeitslot reservieren</div><a href="https://www.nhm.ac.uk/visit/book-free-tickets.html" target="_blank">→ nhm.ac.uk</a></div>
+    <div class="bi"><div class="bn">⛪ Kirchen kostenlos</div><div class="bnt">Westminster Abbey + St. Paul's via Gottesdienst</div><a href="https://www.westminster-abbey.org/worship-music/services-and-times" target="_blank">→ Zeiten prüfen</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>London April 2026</strong> &nbsp;·&nbsp; <a href="https://www.discoverasr.com/citadines/united-kingdom/citadines-islington-london" target="_blank" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">Hotel Citadines Islington</a> · 3 Shelly Place, N1 1WF · Angel Station (Northern Line)<br><br>
+  Kartenmaterial: © OpenStreetMap contributors · Preise Stand März 2026 · Nur Restaurants mit ≥ 4.4 Google-Bewertung
+</footer>
+
+</body>
+</html>
